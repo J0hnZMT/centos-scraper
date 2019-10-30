@@ -56,7 +56,7 @@ def get_the_links(connected_url, links):
     for link in receive_links:
         if '/' in link:
             new_url = '{}{}'.format(connected_url, link)
-            url.insert(new_url)
+            go_to_url(new_url)
         else:
             return receive_links
     # print("Save Complete!")
@@ -101,12 +101,11 @@ def csv_write(url, links):
         # print(len(file_names), len(file_size))
         for filename, size in zip(file_names, file_size):
             output = {'Filename': filename, 'Download link': url+filename, 'Filesize': size}
-            print(output)
             csv_writer.writerow(output)
 
 
 def main():
-    base_url = 'http://mirror.rise.ph/centos/7/dotnet/'
+    base_url = 'http://mirror.rise.ph/centos/7/'
     response = get_url(base_url) # get the content of the url
     return_links = get_link(response) #get the links found
     get_the_links(base_url, return_links)
