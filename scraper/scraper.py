@@ -9,7 +9,6 @@ from requests.exceptions import RequestException
 import contextlib
 import csv
 from datetime import datetime
-url = []
 
 
 def is_good_response(response):
