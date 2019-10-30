@@ -19,16 +19,11 @@ pipenv install requests BeautifulSoup4
 
 ## To Use
 
-type in the command line your Github username, password, and the term you want to search
+type in the command line
 
 ####Example:
 ```
-python search.py (term) -u (username) -p (password)
-
-#if you forgot your password a prompt will show to input your password
-python search.py (term) -u (username)
-Github Password:
-#the input password will not echo in the stdout so it is more secure
+python scraper.py
 ```
 
 The result will be saved on a CSV file with a file name of output-YYYY-MM-DD-HH-mm.csv
