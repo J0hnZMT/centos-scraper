@@ -58,7 +58,7 @@ def get_the_links(connected_url, links):
             go_to_url(new_url)
         else:
             return receive_links
-    
+    # print("Save Complete!")
 
 
 def go_to_url(url_to_connect):
@@ -92,21 +92,28 @@ def csv_write(url, links):
     file_names = get_the_links(url, links) # return the list of filenames
     file_size = get_size(url) # return the list of sizes
     with open(csv_file_name, "a+", newline='', encoding='utf-8') as csv_file:
-        # header for the csv file
-        field_header = ['Filename', 'Download link', 'Filesize']
-        csv_writer = csv.DictWriter(csv_file, fieldnames=field_header)
-        csv_writer.writeheader()
         # content of the csv file
-        for filename, size in zip(file_names, file_size):
-            output = {'Filename': filename, 'Download link': url+filename, 'Filesize': size}
-            csv_writer.writerow(output)
+        try:
+            for filename, size in zip(file_names, file_size):
+                output = [filename, url+filename, size]
+                csv_writer = csv.writer(csv_file)
+                csv_writer.writerow(output)
+                print(output)
+        except TypeError:
+            print("Complete!{} saved.".format(csv_file_name))
 
 
 def main():
-    base_url = 'http://mirror.rise.ph/centos/7/'
+    base_url = 'http://mirror.rise.ph/centos/7/dotnet/'
     response = get_url(base_url) # get the content of the url
-    return_links = get_link(response) #get the links found
+    return_links = get_link(response) # get the links found
     get_the_links(base_url, return_links)
+    csv_file_name = csv_date_time()
+    with open(csv_file_name, "w+", newline='', encoding='utf-8') as csv_file:
+        # header for the csv file
+        field_header = ['Filename', 'Download link', 'Filesize']
+        csv_writer = csv.writer(csv_file)
+        csv_writer.writerow(field_header)
 
 
 if __name__ == '__main__':
