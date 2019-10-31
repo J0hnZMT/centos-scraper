@@ -97,7 +97,6 @@ def csv_write(url, links):
         csv_writer = csv.DictWriter(csv_file, fieldnames=field_header)
         csv_writer.writeheader()
         # content of the csv file
-        # print(len(file_names), len(file_size))
         for filename, size in zip(file_names, file_size):
             output = {'Filename': filename, 'Download link': url+filename, 'Filesize': size}
             csv_writer.writerow(output)
