@@ -58,7 +58,7 @@ def get_the_links(connected_url, links):
             go_to_url(new_url)
         else:
             return receive_links
-    # print("Save Complete!")
+    
 
 
 def go_to_url(url_to_connect):
