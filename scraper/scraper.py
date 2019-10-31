@@ -64,7 +64,6 @@ def go_to_url(url_to_connect):
     current_url = get_current_url(url_to_connect)
     response = get_url(url_to_connect)
     return_links = get_link(response)
-    # get_the_links(current_url, return_links)
     csv_write(current_url, return_links)
 
 
